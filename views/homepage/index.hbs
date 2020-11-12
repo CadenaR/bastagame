@@ -1,19 +1,77 @@
-<main role="main" class="container">
-  <div class="starter-template">
-    <h1>Bootstrap starter template</h1>
-    <p class="lead">
-      Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.
-    </p>
-    <p>
-      Source: <a href="https://getbootstrap.com/docs/4.0/examples/" target="_blank">https://getbootstrap.com/docs/4.0/examples/</a>
-    </p>
+<main role="main" class="container root">
+  <div id="waitingRoom" class="rootCard">
     <div class="row">
-        <div class="col">
-          <input type="text" id="messageToServer">
-          <button class="btn btn-success" onclick="emitEventToSocketIo();">
-              Message
-          </button>
+      <div class="col-12 colCard title">
+        <h1 id="playerName">Hello Player</h1>
+      </div>
+
+      <div class="col-12 colCard">
+        <button id="startBtn" class="btn btn-success" onclick="startGame();">
+          Start
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameRoom" class="rootCard">
+    <div class="row">
+      <div class="col-12 colCard title">
+        <h1 id="letter">Hello Player 1</h1>
+      </div>
+      <div class="col-12 colCard">
+        <div class="row">
+          <div class="col-3">
+            <h5>Name</h5>
+          </div>
+          <div class="col-7">
+            <input type="text" id="name">
+          </div>
         </div>
+      </div>
+      <div class="col-12 colCard">
+        <div class="row">
+          <div class="col-3">
+            <h5>Color</h5>
+          </div>
+          <div class="col-7">
+            <input type="text" id="color">
+          </div>
+        </div>
+      </div>
+      <div class="col-12 colCard">
+        <div class="row">
+          <div class="col-3">
+            <h5>Fruit</h5>
+          </div>
+          <div class="col-7">
+            <input type="text" id="fruit">
+          </div>
+        </div>
+      </div>
+      <div class="col-12 colCard">
+        <button id="bastaBtn" class="btn btn-success" onclick="submitAnswers();">
+          Basta
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="podium" class="rootCardPodium">
+    <div class="row">
+      <div class="col-12">
+        <div class="row d-flex justify-content-center">
+          <div class="col-8 winnerDiv">
+            <h1 id="winner" style="font-size: 50px; font-weight: bold">Player 1</h1>
+          </div>
+          <div class="col-12">
+            <div class="col-12 colCard">
+              <button id="startBtn" class="btn btn-success" onclick="endGame();">
+                End
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </main>

@@ -1,0 +1,84 @@
+body {
+  background-color: #1c2c54;
+}
+
+#waitingRoom {
+  display: flex;
+}
+
+#gameRoom {
+  display: none;
+}
+
+#podium {
+  display: none;
+}
+
+.root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rootCard {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(199, 199, 199);
+  border-radius: 10px;
+  width: 40vw;
+  height: 60vh;
+  background-color: #499ac9;
+  color: #501e11;
+  display: flex;
+  justify-content: center;
+}
+
+.rootCardPodium {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(199, 199, 199);
+  border-radius: 10px;
+  width: 40vw;
+  min-width: 305px;
+  height: 60vh;
+  background-color: #499ac9;
+  color: #501e11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colCard {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 35px;
+}
+
+#startBtn {
+  width: 300px;
+  height: 130px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+#bastaBtn {
+  width: 150px;
+}
+
+.title {
+  margin-top: 40px;
+}
+
+.title h1 {
+  margin: 0 5px;
+}
+
+.winnerDiv {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 19px;
+  margin-top: -50px;
+}
