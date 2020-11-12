@@ -3,15 +3,15 @@ body {
 }
 
 #waitingRoom {
-  display: flex;
+  z-index: 0;
 }
 
 #gameRoom {
-  display: none;
+  z-index: 1;
 }
 
 #podium {
-  display: none;
+  z-index: 2;
 }
 
 .root {
@@ -62,6 +62,7 @@ body {
   height: 130px;
   font-size: 50px;
   font-weight: bold;
+  display: none;
 }
 
 #bastaBtn {
