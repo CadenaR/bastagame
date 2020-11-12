@@ -6,7 +6,9 @@ let letter = $("#letter");
 let name = $("#name");
 let color = $("#color");
 let fruit = $("#fruit");
+let bastaBtn = $("#bastaBtn");
 let podium = $("#podium");
+let podiumName = $("#podiumPlayerName")
 let winner = $("#winner");
 let delivered = false;
 
@@ -47,25 +49,30 @@ function connectToSocketIo() {
     switchToGame();
   });
 
+  window.socket.on("timer", function (data) {
+    startGameTimer(data.time);
+  });
+
   window.socket.on("letter", function (data) {
-    changeLetter(data.character);
+    changeLetter(data.letter);
   });
 
   window.socket.on("game:stop", function () {
     stopGame();
   });
 
-  window.socket.on("game:stop", function (data) {
+  window.socket.on("game:winner", function (data) {
     setWinner(data.winner);
   });
 
   window.socket.on("finish", function () {
-    exitRoom()
+    exitRoom();
   });
 }
 
 function setName(pName) {
-  playerName.text(`Hello ${pName}`);
+  playerName.text(pName);
+  podiumName.text(pName);
 }
 
 function activateStartButton() {
@@ -90,11 +97,20 @@ function switchToGame() {
   startBtn.prop("disabled", false);
   startBtn.hide();
   waitingRoom.hide();
+  bastaBtn.hide();
   gameRoom.show();
+  name.val("");
+  color.val("");
+  fruit.val("");
+}
+
+function startGameTimer(t) {
+  letter.text(t);
 }
 
 function changeLetter(chr) {
   letter.text(chr);
+  bastaBtn.show();
 }
 
 function submitAnswers() {
@@ -102,23 +118,26 @@ function submitAnswers() {
     let ans = { name: name.val(), color: color.val(), fruit: fruit.val() };
     delivered = true;
     window.socket.emit("server:basta", { ans: ans });
+    bastaBtn.hide();
   } else {
     makeToastMessage("Fill all the fields");
   }
 }
 
 function stopGame() {
-  if (!delived) {
+  if (!delivered) {
+    bastaBtn.hide();
     let ans = { name: name.val(), color: color.val(), fruit: fruit.val() };
 
-    window.socket.emit("server:basta", { ans: ans });
+    window.socket.emit("server:game:stop", { ans: ans });
   }
 }
 
 function setWinner(gameWinner) {
-  podium.show();
-  gameRoom.hide();
   winner.text(gameWinner);
+  podium.show();
+  letter.text("Ready?");
+  gameRoom.hide();
 }
 
 function endGame() {
@@ -128,8 +147,9 @@ function endGame() {
 function exitRoom() {
   window.socket.emit("kickMe");
   waitingRoom.show();
-  gameRoom.hide()
+  gameRoom.hide();
   podium.hide();
+  delivered = false;
 }
 
 $(function () {

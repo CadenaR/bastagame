@@ -2,18 +2,6 @@ body {
   background-color: #1c2c54;
 }
 
-#waitingRoom {
-  z-index: 0;
-}
-
-#gameRoom {
-  z-index: 1;
-}
-
-#podium {
-  z-index: 2;
-}
-
 .root {
   width: 100vw;
   height: 100vh;
